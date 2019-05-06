@@ -11,7 +11,9 @@ from sklearn.externals import joblib
 from scipy import misc
 import numpy as np
 import pandas as pd
-from PreprocessingStep import preprocessInput	
+from PreprocessingStep import preprocessInput
+from PreprocessingStep import getTrainColumns
+from PreprocessingStep import imputeColumnValues	
 app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
@@ -27,11 +29,16 @@ def make_prediction():
 		#img = img[:,:,:3]
 		#img = img.reshape(1, -1)
 		file_inp = preprocessInput(read_df)
-		
+		train_cols = getTrainColumns()
+        #TODO : modify gettraincolumns to remove suppression and return the result
+		mod_test_df = imputeColumnValues(train_cols, file_inp)
 		print(file_inp.shape)
+		#mod_test_df = mod_test_df.drop('Suppression Personnel')
+		# make prediction on new image
+		prediction = model.predict(mod_test_df)
 
 		# make prediction on new image
-		prediction = model.predict(file_inp)
+
 	
 		# squeeze value from 1D array and convert to string for clean return
 		label = str(np.squeeze(prediction))
