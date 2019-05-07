@@ -1,98 +1,98 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
 import numpy as np
 
 
-# In[141]:
+# In[6]:
 
 
 # %matplotlib inline 
 
 
-# In[142]:
+# In[3]:
 
 
 read_df = pd.read_csv('Fire_Incidents.tsv', sep='\t')
 
 
-# In[3]:
+# In[4]:
 
 
 read_df.shape
 
 
-# In[4]:
-
-
-read_df.describe()
-
-
 # In[5]:
 
 
-read_df['Station Area'].unique()
+read_df.describe()
 
 
 # In[6]:
 
 
-read_df.count()
+read_df['Station Area'].unique()
 
 
 # In[7]:
 
 
-read_df['Civilian Fatalities'].head(10)
+read_df.count()
 
 
 # In[8]:
 
 
-read_df['Civilian Fatalities'].unique()
+read_df['Civilian Fatalities'].head(10)
 
 
 # In[9]:
 
 
-read_df['Civilian Injuries'].head(10)
+read_df['Civilian Fatalities'].unique()
 
 
 # In[10]:
 
 
-read_df['Civilian Injuries'].unique()
+read_df['Civilian Injuries'].head(10)
 
 
 # In[11]:
 
 
-read_df['Mutual Aid'].head(10)
+read_df['Civilian Injuries'].unique()
 
 
 # In[12]:
 
 
-read_df['Mutual Aid'].count()
+read_df['Mutual Aid'].head(10)
 
 
 # In[13]:
 
 
-read_df.count()
+read_df['Mutual Aid'].count()
 
 
 # In[14]:
 
 
-read_df.describe()
+read_df.count()
 
 
 # In[15]:
+
+
+read_df.describe()
+
+
+# In[16]:
 
 
 read_df['Zipcode'].unique()
@@ -104,79 +104,79 @@ read_df['Zipcode'].unique()
 
 
 
-# In[16]:
+# In[17]:
 
 
 # read_df['Zipcode'].isna().sum()
 
 
-# In[17]:
+# In[18]:
 
 
 # read_df['Zipcode'] = read_df['Zipcode'].dropna()
 
 
-# In[18]:
+# In[19]:
 
 
 read_df.shape
 
 
-# In[19]:
+# In[20]:
 
 
 read_df
 
 
-# In[20]:
+# In[21]:
 
 
 df_X = read_df.drop(['Number of Alarms', 'Number of floors with minimum damage', 'Number of floors with significant damage', 'Ignition Cause', 'Number of floors with heavy damage', 'Number of floors with extreme damage', 'Detector Failure Reason', 'Number of Sprinkler Heads Operating', 'Item First Ignited', 'Automatic Extinguishing Sytem Type', 'Automatic Extinguishing Sytem Perfomance', 'Automatic Extinguishing Sytem Failure Reason', 'Supervisor District', 'Neighborhood  District'  ], axis = 1)
 
 
-# In[21]:
+# In[22]:
 
 
 df_X.describe()
 
 
-# In[22]:
+# In[23]:
 
 
 df_X['Detector Operation'].unique()
 
 
-# In[23]:
+# In[24]:
 
 
 df_X['First Unit On Scene'].unique()
 
 
-# In[24]:
+# In[25]:
 
 
 df_X['Action Taken Secondary'].unique()
 
 
-# In[25]:
+# In[26]:
 
 
 df_X.count()
 
 
-# In[26]:
+# In[27]:
 
 
 df_X.shape
 
 
-# In[27]:
+# In[28]:
 
 
 df_X['Fire Spread'].unique()
 
 
-# In[28]:
+# In[29]:
 
 
 df_X['Primary Situation'].unique()
@@ -188,69 +188,69 @@ df_X['Primary Situation'].unique()
 
 
 
-# In[29]:
+# In[30]:
 
 
 df_X['Action Taken Other'].unique()
 
 
-# In[30]:
+# In[31]:
 
 
 df_X1 = df_X.drop(['Human Factors Associated with Ignition','Arrival DtTm', 'Close DtTm', 'No Flame Spead', 'Mutual Aid','City','Fire Spread','Detector Type','Detector Operation','Detector Effectiveness', 'Primary Situation', 'Other Units'
  ,'Other Personnel', 'Action Taken Other', 'Action Taken Secondary', 'First Unit On Scene', 'Call Number','Station Area' ], axis=1)
 
 
-# In[31]:
+# In[32]:
 
 
 df_X1['Action Taken Primary'].head(10)
 
 
-# In[32]:
+# In[33]:
 
 
 df_X1['Structure Status'].unique()
 
 
-# In[33]:
+# In[34]:
 
 
 df_X1['Structure Type'].unique()
 
 
-# In[34]:
+# In[35]:
 
 
 df_X1['Floor of Fire Origin'].unique()
 
 
-# In[35]:
+# In[36]:
 
 
 df_X1['Automatic Extinguishing System Present'].unique()
 
 
-# In[36]:
+# In[37]:
 
 
 df_X1.shape
 
 
-# In[37]:
+# In[38]:
 
 
 df_X1['Area of Fire Origin'].unique()
 #df_aor = df_X1[df_X1['Area of Fire Origin'] == 'nan']
 
 
-# In[38]:
+# In[39]:
 
 
 df_X1['Box'].unique()
 
 
-# In[149]:
+# In[40]:
 
 
 # # Visualisation
@@ -280,31 +280,31 @@ df_X1['Box'].unique()
 #     )
 
 
-# In[150]:
+# In[41]:
 
 
 #plot_correlation_map(df_X1)
 
 
-# In[145]:
+# In[42]:
 
 
 df_X1.shape
 
 
-# In[146]:
+# In[43]:
 
 
 df_X1.head(10)
 
 
-# In[147]:
+# In[44]:
 
 
 # plot_correlation_map(read_df)
 
 
-# In[44]:
+# In[45]:
 
 
 from datetime import datetime
@@ -322,85 +322,85 @@ def convert_date_to_month(tmstp):
     return result
 
 
-# In[45]:
+# In[46]:
 
 
 df_X1['Weekday'] = df_X1['Alarm DtTm'].apply(lambda x: convert_date_to_weekday(x))
 
 
-# In[46]:
+# In[47]:
 
 
 df_X1['Hour'] = df_X1['Alarm DtTm'].apply(lambda x: convert_date_to_hour(x))
 
 
-# In[47]:
+# In[48]:
 
 
 df_X1['Month'] = df_X1['Alarm DtTm'].apply(lambda x: convert_date_to_month(x))
 
 
-# In[48]:
+# In[49]:
 
 
 df_X2 = df_X1.drop(['Exposure Number','Location', 'Ignition Factor Secondary', 'Heat Source','Floor of Fire Origin','Box' ,'Structure Status','Alarm DtTm', 'Area of Fire Origin', 'Incident Date', 'Incident Number', 'Action Taken Primary','Ignition Factor Primary', 'Structure Type', 'Automatic Extinguishing System Present','Detectors Present','Property Use','Estimated Property Loss','Estimated Contents Loss', 'Detector Alerted Occupants', 'Address'], axis=1)
 
 
-# In[49]:
+# In[50]:
 
 
 df_X2.head(10)
 
 
-# In[50]:
+# In[51]:
 
 
 list(df_X2)
 
 
-# In[148]:
+# In[52]:
 
 
 # plot_correlation_map(df_X2)
 
 
-# In[52]:
+# In[53]:
 
 
 df_X1['Area of Fire Origin'].unique()
 
 
-# In[53]:
+# In[54]:
 
 
 df_X1['Detector Alerted Occupants'].unique()
 
 
-# In[54]:
+# In[55]:
 
 
 df_X1['Property Use'].unique()
 
 
-# In[55]:
+# In[56]:
 
 
 df_X1['Structure Type'].unique()
 
 
-# In[56]:
+# In[57]:
 
 
 df_X1['Structure Status'].unique()
 
 
-# In[57]:
+# In[58]:
 
 
 df_X1['Structure Status'].value_counts()
 
 
-# In[58]:
+# In[59]:
 
 
 df_X1['Structure Type'].value_counts()
@@ -652,7 +652,7 @@ df_feature.head(10)
 df_feature.shape
 
 
-# In[123]:
+# In[93]:
 
 
 def preprocessInput(read_df):
@@ -678,30 +678,64 @@ def preprocessInput(read_df):
     return df_feature
 
 
-# In[125]:
+# In[94]:
+
+
+def imputeColumnValues(train_cols, test_df):
+    listofvals = []
+    test_cols = list(test_df)
+    for col in train_cols:
+        if col in test_cols:
+            colval = test_df[col]
+            list1= colval.tolist()
+            listofvals.append(list1[0])
+        else :
+            #list1 = [0]
+            listofvals.append(0)
+    listoflists = []
+    listoflists.append(listofvals)
+    new_df = pd.DataFrame(listoflists, columns=train_cols)
+    return new_df
+
+
+# In[2]:
+
+
+def getTrainColumns():
+    train_df = pd.read_csv('Fire_Incidents.tsv', sep='\t')
+    train_df = preprocessInput(train_df)
+    #train_df = train_df.drop('Suppression Personnel')
+    train_df = train_df.drop(['Suppression Personnel'],axis=1)
+    return list(train_df)
+
+
+# In[96]:
 
 
 read_df = pd.read_csv('Fire_Incidents.tsv', sep='\t')
 df_feature = preprocessInput(read_df)
+global train_cols
+train_cols = list(df_feature)
+
 df_feature = df_feature.drop_duplicates()
 df_y = df_feature['Suppression Personnel']
 df_feature = df_feature.drop(['Suppression Personnel'],axis=1)
 
 
-# In[ ]:
+# In[97]:
 
 
 from sklearn.model_selection import train_test_split
 df_feature_train, df_feature_test, df_y_train, df_y_test = train_test_split(df_feature, df_y, test_size = 0.2, random_state = 0)
 
 
-# In[126]:
+# In[98]:
 
 
 df_feature_train.shape
 
 
-# In[127]:
+# In[99]:
 
 
 df_feature_test.shape
@@ -713,13 +747,13 @@ df_feature_test.shape
 
 
 
-# In[128]:
+# In[100]:
 
 
 from sklearn.preprocessing import StandardScaler
 
 
-# In[129]:
+# In[101]:
 
 
 sc_X = StandardScaler()
@@ -728,43 +762,43 @@ X_test = sc_X.fit_transform(df_feature_test)
 sc_y = StandardScaler()
 
 
-# In[130]:
+# In[102]:
 
 
 X_train[:10]
 
 
-# In[131]:
+# In[103]:
 
 
 # from sklearn.preprocessing import OneHotEncoder
 
 
-# In[132]:
+# In[104]:
 
 
 # enc = OneHotEncoder()
 
 
-# In[133]:
+# In[105]:
 
 
 # enc.fit(df_feature)
 
 
-# In[134]:
+# In[106]:
 
 
 # onehotlabels = enc.transform(df_feature)
 
 
-# In[135]:
+# In[107]:
 
 
 # onehotlabels.shape
 
 
-# In[136]:
+# In[108]:
 
 
 # from scipy.sparse import csr_matrix
@@ -808,7 +842,7 @@ X_train[:10]
     
 
 
-# In[137]:
+# In[109]:
 
 
 # mat_train = dataframetoCSRmatrix(df_feature)
@@ -816,13 +850,13 @@ X_train[:10]
 # print("Shape of CSR Matrix -", mat.shape)
 
 
-# In[138]:
+# In[110]:
 
 
 # mat_test = dataframetoCSRmatrix(df_feature)
 
 
-# In[139]:
+# In[114]:
 
 
 from sklearn.ensemble import RandomForestClassifier
@@ -836,21 +870,16 @@ predicted_y = rfclf.predict(X_test)
 print("test accuracy: ",f1_score(df_y_test, predicted_y, average='micro'))
 
 
-# In[121]:
+# In[115]:
 
 
 from sklearn.externals import joblib 
   
 
 
-# In[122]:
+# In[116]:
 
 
-joblib.dump(rfclf, 'sf.pkl') 
-
-
-# In[ ]:
-
-
-
+joblib.dump(rfclf, 'sf.pkl')
+joblib.dump(train_cols, 'train_cols')
 
