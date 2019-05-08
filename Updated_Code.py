@@ -99,15 +99,15 @@ df_X1 = df_X1.join(one_hot)
 df_feature  = df_X1.drop(['Battalion','Zipcode'],axis=1)
 
 
+# df_y = df_feature['Suppression Personnel']
+# df_feature = df_feature.drop(['Suppression Personnel'],axis=1)
+
+
+#df_X1_mini = df_feature[:100]
+
+
 df_y = df_feature['Suppression Personnel']
 df_feature = df_feature.drop(['Suppression Personnel'],axis=1)
-
-
-df_X1_mini = df_feature[:100]
-
-
-df_y = df_X1_mini['Suppression Personnel']
-df_X1_mini = df_X1_mini.drop(['Suppression Personnel'],axis=1)
 
 
 from scipy.sparse import csr_matrix
@@ -149,7 +149,7 @@ def dataframetoCSRmatrix(df):
     
     return mat
     
-mat1 = dataframetoCSRmatrix(df_X1_mini)
+mat1 = dataframetoCSRmatrix(df_feature)
 
 
 mat1.shape
