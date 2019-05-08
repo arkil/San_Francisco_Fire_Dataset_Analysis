@@ -18,7 +18,9 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
-   return flask.render_template('index.html')   
+   return flask.render_template('index.html')
+
+   
 @app.route('/predict', methods=['POST'])
 def make_prediction():
     if request.method=='POST':
@@ -34,14 +36,18 @@ def make_prediction():
             prediction = lasso_model.predict(mod_test_df)
         elif modelused == "randomforest":
             prediction = rf_model.predict(mod_test_df)
+        elif modelused == "ridge":
+            prediction = ridge_reg_model.predict(mod_test_df)
         else:
-            prediction = elastic_net_model.predict(mod_test_df)
+            prediction = gradient_boosting_model.predict(mod_test_df)
 		#prediction = model.predict(mod_test_df)
         label = str(np.squeeze(prediction))
+        label = int(label)
         return render_template('index.html', label=label)
    
 if __name__ == '__main__':
-    lasso_model= joblib.load('rforest.pkl')
+    lasso_model= joblib.load('sf_reg_lasso.pkl')
     rf_model = joblib.load('rforest.pkl')
-    elastic_net_model = joblib.load('rforest.pkl')
+    ridge_reg_model = joblib.load('sf_reg_ridge.pkl')
+    gradient_boosting_model = joblib.load('sf_reg_gbr.pkl')
     app.run(host='0.0.0.0', port=8000, debug=True)
