@@ -1,0 +1,54 @@
+<html>
+  <head>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <title>Fire Personnel Predictor</title>
+    <style>
+    	.divClass{
+    		position:absolute;
+    		left:500px;
+    		top:200px;
+    	}
+    	.h1Class{
+    		color: white;
+    		text-align: center;
+    		padding: 20px;
+    	}
+
+    	.buttonStyle{
+    		width:100px !important;
+    	}
+    	.mainClass{
+    		background-color: #398439;
+    		height: 100px;
+    	}
+
+      body{
+        background-image: url("templates/fireimage2.jpg");
+      }
+
+    </style>
+  </head>
+  <body class="container bg">
+  	<div class="mainClass">
+  	<h1 class="h1Class">Fire Personnel Predictor</h1><br><br>
+	  	<div class="col-md-4 col-sm-4 col-xs-12 divClass">
+	    	
+		
+	    <!--<div class="divstyle">-->
+		<form action="/predict" method="post" enctype="multipart/form-data">
+		<h4>Upload test file</h4>
+	     <input type="file" name="image" value="Upload" ><br><br>
+       <!--<input type="text" name="modelused" style="width:200px;height:30px"/>-->
+       <select name="modelused">
+        <option value="">--</option>
+        <option  value="lasso">Lasso Regressor</option>
+        <option  value="randomforest">Random Forest Regressor</option>
+        <option  value="elasticnet">ElasticNet Regressor</option>
+       
+       </select><br><br>
+	     <input type="submit"  class = "btn btn-success btn-block buttonStyle" value="Predict"> {% if modelused %} {{ modelused }} {% endif %} {% if label %} {{ label }} {% endif %}
+		</form>
+		</div>
+	</div>
+  </body>
+</html>
